@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Primary theme colors -->
+    <color name="primary_mint_blue">#7EE8FA</color>
+    <color name="primary_pink">#FFB6C1</color>
+    
+    <!-- Work and break mode colors -->
+    <color name="work_mode">#E74C3C</color>
+    <color name="break_mode">#27AE60</color>
+    
+    <!-- Additional UI colors -->
+    <color name="surface_light">#F8F9FA</color>
+    <color name="surface_dark">#121212</color>
+    <color name="on_surface_light">#1A1A1A</color>
+    <color name="on_surface_dark">#E1E1E1</color>
+    
+    <!-- Timer colors -->
+    <color name="timer_background">#F0F8FF</color>
+    <color name="timer_progress">#7EE8FA</color>
+    <color name="timer_text">#2C3E50</color>
+    
+    <!-- Button colors -->
+    <color name="button_primary">#7EE8FA</color>
+    <color name="button_secondary">#FFB6C1</color>
+    <color name="button_text">#FFFFFF</color>
+    
+    <!-- Success and error colors -->
+    <color name="success">#27AE60</color>
+    <color name="error">#E74C3C</color>
+    <color name="warning">#F39C12</color>
+</resources>

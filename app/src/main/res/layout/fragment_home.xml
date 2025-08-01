@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface_light"
+    tools:context=".ui.fragment.HomeFragment">
+
+    <!-- 상단 설정 버튼 -->
+    <ImageButton
+        android:id="@+id/btnSettings"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/settings"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/timer_text" />
+
+    <!-- 디지털 타이머 표시 (상단) -->
+    <TextView
+        android:id="@+id/tvDigitalTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/digital_timer_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="monospace"
+        android:padding="16dp"
+        android:text="@string/timer_default_time"
+        android:textColor="@color/timer_text"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSettings" />
+
+    <!-- 타이머 상태 텍스트 -->
+    <TextView
+        android:id="@+id/tvTimerState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/work_session"
+        android:textColor="@color/work_mode"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDigitalTimer" />
+
+    <!-- 원형 타이머 (중앙) -->
+    <com.app.pomodoro.ui.view.CircularTimerView
+        android:id="@+id/circularTimer"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTimerState" />
+
+    <!-- 컨트롤 버튼들 -->
+    <LinearLayout
+        android:id="@+id/layoutControls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/circularTimer">
+
+        <!-- 초기화 버튼 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClear"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/clear_timer"
+            app:icon="@drawable/ic_clear"
+            app:strokeColor="@color/button_secondary" />
+
+        <!-- 시작/일시정지 버튼 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartPause"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/button_primary"
+            android:text="@string/start_timer"
+            android:textColor="@color/button_text"
+            app:icon="@drawable/ic_play"
+            app:iconTint="@color/button_text" />
+
+    </LinearLayout>
+
+    <!-- 하단 성과 버튼 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAchievements"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/achievements"
+        android:textColor="@color/timer_text"
+        app:icon="@drawable/ic_trophy"
+        app:iconTint="@color/timer_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
