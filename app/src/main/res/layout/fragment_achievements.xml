@@ -23,14 +23,14 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="뒤로가기"
             android:src="@drawable/ic_arrow_back"
-            app:tint="@color/timer_text" />
+            app:tint="@color/timer_text_dark" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/achievements_title"
-            android:textColor="@color/timer_text"
+            android:textColor="@color/timer_text_dark"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginStart="8dp" />
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 통계"
-                android:textColor="@color/timer_text"
+                android:textColor="@color/timer_text_dark"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="12dp" />
@@ -86,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="총 세션"
-                        android:textColor="@color/timer_text"
+                        android:textColor="@color/timer_text_dark"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="완료 세션"
-                        android:textColor="@color/timer_text"
+                        android:textColor="@color/timer_text_dark"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -136,7 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="완료율"
-                        android:textColor="@color/timer_text"
+                        android:textColor="@color/timer_text_dark"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -215,13 +215,13 @@
             android:layout_height="96dp"
             android:src="@drawable/ic_trophy"
             android:alpha="0.3"
-            app:tint="@color/timer_text" />
+            app:tint="@color/timer_text_dark" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_sessions"
-            android:textColor="@color/timer_text"
+            android:textColor="@color/timer_text_dark"
             android:textSize="16sp"
             android:alpha="0.7"
             android:layout_marginTop="16dp" />

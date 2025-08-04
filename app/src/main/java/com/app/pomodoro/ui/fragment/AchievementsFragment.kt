@@ -135,7 +135,7 @@ class AchievementsFragment : Fragment() {
             binding.btnFilterCancelled
         ).forEach { button ->
             button.setBackgroundColor(requireContext().getColor(R.color.white))
-            button.setTextColor(requireContext().getColor(R.color.timer_text))
+            button.setTextColor(requireContext().getColor(R.color.timer_text_dark))
         }
         
         // 선택된 버튼 강조

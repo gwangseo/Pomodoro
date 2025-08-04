@@ -28,14 +28,14 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="뒤로가기"
                 android:src="@drawable/ic_arrow_back"
-                app:tint="@color/timer_text" />
+                app:tint="@color/timer_text_dark" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/settings_title"
-                android:textColor="@color/timer_text"
+                android:textColor="@color/timer_text_dark"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_marginStart="8dp" />
@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="계정 연동"
-                    android:textColor="@color/timer_text"
+                    android:textColor="@color/timer_text_dark"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp" />
@@ -87,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/web_sync_info"
-                        android:textColor="@color/timer_text"
+                        android:textColor="@color/timer_text_dark"
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:alpha="0.7" />
@@ -129,7 +129,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="사용자 이름"
-                                android:textColor="@color/timer_text"
+                                android:textColor="@color/timer_text_dark"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -138,7 +138,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="user@example.com"
-                                android:textColor="@color/timer_text"
+                                android:textColor="@color/timer_text_dark"
                                 android:textSize="14sp"
                                 android:alpha="0.7" />
 
@@ -189,7 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/timer_duration"
-                    android:textColor="@color/timer_text"
+                    android:textColor="@color/timer_text_dark"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp" />
@@ -198,7 +198,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/timer_duration_summary"
-                    android:textColor="@color/timer_text"
+                    android:textColor="@color/timer_text_dark"
                     android:textSize="14sp"
                     android:alpha="0.7"
                     android:layout_marginBottom="16dp" />

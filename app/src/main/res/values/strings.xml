@@ -2,28 +2,28 @@
     <string name="app_name">Pomodoro</string>
     
     <!-- Home Screen -->
-    <string name="start_timer">시작</string>
-    <string name="pause_timer">일시정지</string>
-    <string name="clear_timer">초기화</string>
-    <string name="achievements">기록 보기</string>
-    <string name="settings">설정</string>
+    <string name="start_timer">Start</string>
+    <string name="pause_timer">Pause</string>
+    <string name="clear_timer">Reset</string>
+    <string name="achievements">Achievements</string>
+    <string name="settings">Settings</string>
     <string name="time_format" formatted="false">%02d:%02d:%02d</string>
-    <string name="timer_default_time">25:00</string>
+    <string name="timer_default_time">00:25:00</string>
     
     <!-- Timer states -->
-    <string name="work_session">작업 시간</string>
-    <string name="break_session">휴식 시간</string>
-    <string name="timer_completed">타이머 완료!</string>
-    <string name="timer_paused">일시정지됨</string>
+    <string name="work_session">Wokr Time</string>
+    <string name="break_session">Break Time</string>
+    <string name="timer_completed">Completed!</string>
+    <string name="timer_paused">Paused</string>
     
     <!-- Settings Screen -->
-    <string name="settings_title">설정</string>
-    <string name="google_login">Google 계정 연동하기</string>
-    <string name="google_login_success">연동됨</string>
-    <string name="logout">로그아웃</string>
-    <string name="web_sync_info">웹에서도 동일 계정으로 연동하여 기록 확인 가능</string>
-    <string name="timer_duration">타이머 기본 시간</string>
-    <string name="timer_duration_summary">뽀모도로 세션의 기본 시간을 설정합니다</string>
+    <string name="settings_title">Settings</string>
+    <string name="google_login">Connect Google Account</string>
+    <string name="google_login_success">Connected</string>
+    <string name="logout">Logout</string>
+    <string name="web_sync_info">You can also check your records by linking with the same account on the Web Version!</string>
+    <string name="timer_duration">Default Time</string>
+    <string name="timer_duration_summary">Setting Default Time</string>
     
     <!-- Achievements Screen -->
     <string name="achievements_title">성과 기록</string>

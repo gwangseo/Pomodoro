@@ -58,10 +58,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     
     // Firebase BoM (Firebase 설정 완료 후 활성화 예정)
-    // implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
-    // implementation("com.google.firebase:firebase-auth-ktx")
-    // implementation("com.google.firebase:firebase-firestore-ktx")
-    // implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
     
     // Preferences
     implementation("androidx.preference:preference-ktx:1.2.1")

@@ -80,12 +80,12 @@ class CircularTimerView @JvmOverloads constructor(
         }
         
         // 텍스트
-        textPaint.apply {
-            color = textColor
-            textAlign = Paint.Align.CENTER
-            textSize = 48f
-            typeface = Typeface.DEFAULT_BOLD
-        }
+        //textPaint.apply {
+        //    color = textColor
+        //    textAlign = Paint.Align.CENTER
+        //    textSize = 48f
+        //    typeface = Typeface.DEFAULT_BOLD
+        //}
         
         // 분 표시
         minuteMarkPaint.apply {
@@ -111,7 +111,7 @@ class CircularTimerView @JvmOverloads constructor(
     private fun loadColors() {
         backgroundColor = ContextCompat.getColor(context, R.color.timer_background)
         progressColor = ContextCompat.getColor(context, R.color.timer_progress)
-        textColor = ContextCompat.getColor(context, R.color.timer_text)
+        textColor = ContextCompat.getColor(context, R.color.timer_text_dark)
         handColor = ContextCompat.getColor(context, R.color.work_mode)
         
         // 페인트 색상 업데이트
@@ -265,7 +265,7 @@ class CircularTimerView @JvmOverloads constructor(
             }
             TimerState.IDLE -> {
                 stopHandAnimation()
-                handColor = ContextCompat.getColor(context, R.color.timer_text)
+                handColor = ContextCompat.getColor(context, R.color.timer_text_dark)
             }
         }
         
