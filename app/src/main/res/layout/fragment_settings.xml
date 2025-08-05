@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface_light"
+    android:background="@color/background_dark"
     tools:context=".ui.fragment.SettingsFragment">
 
     <LinearLayout
@@ -47,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/surface_dark"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp">
 
@@ -81,7 +82,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/google_login"
                         app:icon="@drawable/ic_google"
-                        app:strokeColor="@color/primary_mint_blue" />
+                        app:iconTint="@color/timer_text_dark"
+                        android:textColor="@color/timer_text_dark"
+                        app:strokeColor="@color/timer_text_dark" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -175,7 +178,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/surface_dark"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp">
 
@@ -218,7 +221,8 @@
                         android:layout_weight="1"
                         android:layout_marginEnd="4dp"
                         android:text="@string/duration_15_min"
-                        app:strokeColor="@color/primary_mint_blue" />
+                        android:textColor="@color/timer_text_dark"
+                        app:strokeColor="@color/timer_text_dark" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn25Min"
@@ -229,6 +233,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="4dp"
                         android:text="@string/duration_25_min"
+                        android:textColor="@color/timer_text_dark"
                         android:backgroundTint="@color/primary_mint_blue" />
 
                     <com.google.android.material.button.MaterialButton
@@ -240,7 +245,8 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="4dp"
                         android:text="@string/duration_30_min"
-                        app:strokeColor="@color/primary_mint_blue" />
+                        android:textColor="@color/timer_text_dark"
+                        app:strokeColor="@color/timer_text_dark" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn50Min"
@@ -250,7 +256,8 @@
                         android:layout_weight="1"
                         android:layout_marginStart="4dp"
                         android:text="@string/duration_50_min"
-                        app:strokeColor="@color/primary_mint_blue" />
+                        android:textColor="@color/timer_text_dark"
+                        app:strokeColor="@color/timer_text_dark" />
 
                 </LinearLayout>
 

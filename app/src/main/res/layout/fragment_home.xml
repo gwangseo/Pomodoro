@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_dark">
+    android:background="@color/background_dark"
+    tools:context=".ui.fragment.HomeFragment">
 
 
     <!-- 타이머 상태 텍스트 -->
@@ -79,14 +81,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/clear_timer"
+        android:textColor="@color/button_text"
         app:icon="@drawable/ic_clear"
+        app:iconTint="@color/button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnStartPause"
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.803"
-        app:strokeColor="@color/button_secondary" />
+        app:strokeColor="@color/error" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStartPause"
@@ -137,7 +141,7 @@
             app:tint="@color/timer_text_dark" />
 
         <ImageButton
-            android:id="@+id/achievements"
+            android:id="@+id/btnAchievements"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"

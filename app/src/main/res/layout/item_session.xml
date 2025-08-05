@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/surface_dark"
     app:cardCornerRadius="8dp"
     app:cardElevation="2dp">
 
@@ -44,22 +44,22 @@
                     android:id="@+id/tvDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="25분"
+                    android:text="25 Min"
                     android:textColor="@color/timer_text_dark"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="25분" />
+                    tools:text="25 Min" />
 
                 <TextView
                     android:id="@+id/tvSessionType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="작업"
+                    android:text="Work"
                     android:textColor="@color/timer_text_dark"
                     android:textSize="14sp"
                     android:layout_marginStart="8dp"
                     android:alpha="0.7"
-                    tools:text="작업" />
+                    tools:text="Work" />
 
             </LinearLayout>
 
@@ -99,7 +99,7 @@
                 android:textColor="@color/success"
                 android:textSize="10sp"
                 android:layout_marginTop="2dp"
-                tools:text="성공" />
+                tools:text="Success" />
 
         </LinearLayout>
 

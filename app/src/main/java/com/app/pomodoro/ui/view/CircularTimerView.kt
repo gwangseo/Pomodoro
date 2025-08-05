@@ -80,12 +80,12 @@ class CircularTimerView @JvmOverloads constructor(
         }
         
         // 텍스트
-        //textPaint.apply {
-        //    color = textColor
-        //    textAlign = Paint.Align.CENTER
-        //    textSize = 48f
-        //    typeface = Typeface.DEFAULT_BOLD
-        //}
+        textPaint.apply {
+            color = textColor
+            textAlign = Paint.Align.CENTER
+            textSize = 48f
+            typeface = Typeface.DEFAULT_BOLD
+        }
         
         // 분 표시
         minuteMarkPaint.apply {
@@ -215,8 +215,6 @@ class CircularTimerView @JvmOverloads constructor(
         val textBounds = Rect()
         textPaint.getTextBounds(timeText, 0, timeText.length, textBounds)
         val textHeight = textBounds.height()
-        
-        canvas.drawText(timeText, centerX, centerY + textHeight / 2f, textPaint)
     }
     
     /**

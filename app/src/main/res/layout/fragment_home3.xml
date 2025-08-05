@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/surface_dark"
-    tools:context=".ui.fragment.HomeFragment">
+    >
 
     <!-- 상단 설정 버튼 -->
     <ImageButton
@@ -49,7 +49,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/work_session"
         android:textColor="@color/work_mode"
         android:textSize="16sp"
         android:textStyle="bold"

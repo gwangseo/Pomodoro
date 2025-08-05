@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface_light"
+    android:background="@color/background_dark"
     android:orientation="vertical"
     tools:context=".ui.fragment.AchievementsFragment">
 
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/surface_dark"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp">
 
@@ -85,7 +85,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="총 세션"
+                        android:text="Total"
                         android:textColor="@color/timer_text_dark"
                         android:textSize="12sp" />
 
@@ -110,7 +110,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="완료 세션"
+                        android:text="Success"
                         android:textColor="@color/timer_text_dark"
                         android:textSize="12sp" />
 
@@ -135,7 +135,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="완료율"
+                        android:text="Success Rate"
                         android:textColor="@color/timer_text_dark"
                         android:textSize="12sp" />
 
@@ -175,6 +175,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:text="@string/filter_completed"
+            android:textColor="@color/timer_text_dark"
             app:strokeColor="@color/success" />
 
         <com.google.android.material.button.MaterialButton
@@ -185,6 +186,7 @@
             android:layout_weight="1"
             android:layout_marginStart="4dp"
             android:text="@string/filter_cancelled"
+            android:textColor="@color/timer_text_dark"
             app:strokeColor="@color/error" />
 
     </LinearLayout>
