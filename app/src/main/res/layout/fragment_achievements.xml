@@ -230,4 +230,8 @@
 
     </LinearLayout>
 
+    <include
+        android:id="@+id/bottomNavigation"
+        layout="@layout/bottom_navigation" />
+
 </LinearLayout>

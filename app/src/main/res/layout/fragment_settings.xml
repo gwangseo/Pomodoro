@@ -1,270 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/background_dark"
     tools:context=".ui.fragment.SettingsFragment">
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <!-- 뒤로가기 버튼 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="24dp">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="뒤로가기"
-                android:src="@drawable/ic_arrow_back"
-                app:tint="@color/timer_text_dark" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/settings_title"
-                android:textColor="@color/timer_text_dark"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginStart="8dp" />
-
-        </LinearLayout>
-
-        <!-- Google 로그인 섹션 -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="@color/surface_dark"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
+            <!-- 뒤로가기 버튼 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="뒤로가기"
+                    android:src="@drawable/ic_arrow_back"
+                    app:tint="@color/timer_text_dark" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="계정 연동"
+                    android:layout_weight="1"
+                    android:text="@string/settings_title"
                     android:textColor="@color/timer_text_dark"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginStart="8dp" />
 
-                <!-- 로그인 전 상태 -->
+            </LinearLayout>
+
+            <!-- Google 로그인 섹션 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/surface_dark"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
+
                 <LinearLayout
-                    android:id="@+id/layoutLoginBefore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnGoogleLogin"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/google_login"
-                        app:icon="@drawable/ic_google"
-                        app:iconTint="@color/timer_text_dark"
-                        android:textColor="@color/timer_text_dark"
-                        app:strokeColor="@color/timer_text_dark" />
+                    android:padding="16dp">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="계정 연동"
+                        android:textColor="@color/timer_text_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- 로그인 전 상태 -->
+                    <LinearLayout
+                        android:id="@+id/layoutLoginBefore"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/web_sync_info"
-                        android:textColor="@color/timer_text_dark"
-                        android:textSize="14sp"
-                        android:layout_marginTop="8dp"
-                        android:alpha="0.7" />
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnGoogleLogin"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/google_login"
+                            app:icon="@drawable/ic_google"
+                            app:iconTint="@color/timer_text_dark"
+                            android:textColor="@color/timer_text_dark"
+                            app:strokeColor="@color/timer_text_dark" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/web_sync_info"
+                            android:textColor="@color/timer_text_dark"
+                            android:textSize="14sp"
+                            android:layout_marginTop="8dp"
+                            android:alpha="0.7" />
+
+                    </LinearLayout>
+
+                    <!-- 로그인 후 상태 -->
+                    <LinearLayout
+                        android:id="@+id/layoutLoginAfter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
+
+                            <ImageView
+                                android:id="@+id/ivProfileImage"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/circle_background"
+                                android:src="@drawable/ic_person"
+                                android:scaleType="centerCrop" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="12dp">
+
+                                <TextView
+                                    android:id="@+id/tvUserName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="사용자 이름"
+                                    android:textColor="@color/timer_text_dark"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvUserEmail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="user@example.com"
+                                    android:textColor="@color/timer_text_dark"
+                                    android:textSize="14sp"
+                                    android:alpha="0.7" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/google_login_success"
+                                android:textColor="@color/success"
+                                android:textSize="12sp"
+                                android:background="@drawable/success_badge_background"
+                                android:padding="6dp" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnLogout"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/logout"
+                            android:textColor="@color/error"
+                            android:layout_gravity="end" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <!-- 로그인 후 상태 -->
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 타이머 설정 섹션 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/surface_dark"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
+
                 <LinearLayout
-                    android:id="@+id/layoutLoginAfter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:padding="16dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/timer_duration"
+                        android:textColor="@color/timer_text_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/timer_duration_summary"
+                        android:textColor="@color/timer_text_dark"
+                        android:textSize="14sp"
+                        android:alpha="0.7"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- 기존 4개 버튼 대신 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="8dp">
-
-                        <ImageView
-                            android:id="@+id/ivProfileImage"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:background="@drawable/circle_background"
-                            android:src="@drawable/ic_person"
-                            android:scaleType="centerCrop" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginStart="12dp">
-
-                            <TextView
-                                android:id="@+id/tvUserName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="사용자 이름"
-                                android:textColor="@color/timer_text_dark"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvUserEmail"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="user@example.com"
-                                android:textColor="@color/timer_text_dark"
-                                android:textSize="14sp"
-                                android:alpha="0.7" />
-
-                        </LinearLayout>
+                        android:orientation="vertical"
+                        android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/google_login_success"
-                            android:textColor="@color/success"
-                            android:textSize="12sp"
-                            android:background="@drawable/success_badge_background"
-                            android:padding="6dp" />
+                            android:text="타이머 시간 (분)"
+                            android:textColor="@color/timer_text_dark"
+                            android:layout_marginBottom="8dp" />
+
+                        <NumberPicker
+                            android:id="@+id/numberPickerMinutes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
                     </LinearLayout>
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnLogout"
-                        style="@style/Widget.Material3.Button.TextButton"
-                        android:layout_width="wrap_content"
+                    <!-- 타이머 시간 선택 버튼들 -->
+                    <!--
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/logout"
-                        android:textColor="@color/error"
-                        android:layout_gravity="end" />
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn15Min"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="4dp"
+                            android:text="@string/duration_15_min"
+                            android:textColor="@color/timer_text_dark"
+                            app:strokeColor="@color/timer_text_dark" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn25Min"
+                            style="@style/Widget.Material3.Button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:text="@string/duration_25_min"
+                            android:textColor="@color/timer_text_dark"
+                            android:backgroundTint="@color/primary_mint_blue" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn30Min"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:text="@string/duration_30_min"
+                            android:textColor="@color/timer_text_dark"
+                            app:strokeColor="@color/timer_text_dark" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn50Min"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp"
+                            android:text="@string/duration_50_min"
+                            android:textColor="@color/timer_text_dark"
+                            app:strokeColor="@color/timer_text_dark" />
+
+                    </LinearLayout>-->
+
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
-        <!-- 타이머 설정 섹션 -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="@color/surface_dark"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+    </ScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+    <include
+        android:id="@+id/bottomNavigation"
+        layout="@layout/bottom_navigation" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/timer_duration"
-                    android:textColor="@color/timer_text_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/timer_duration_summary"
-                    android:textColor="@color/timer_text_dark"
-                    android:textSize="14sp"
-                    android:alpha="0.7"
-                    android:layout_marginBottom="16dp" />
-
-                <!-- 타이머 시간 선택 버튼들 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn15Min"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="4dp"
-                        android:text="@string/duration_15_min"
-                        android:textColor="@color/timer_text_dark"
-                        app:strokeColor="@color/timer_text_dark" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn25Min"
-                        style="@style/Widget.Material3.Button"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:text="@string/duration_25_min"
-                        android:textColor="@color/timer_text_dark"
-                        android:backgroundTint="@color/primary_mint_blue" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn30Min"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:text="@string/duration_30_min"
-                        android:textColor="@color/timer_text_dark"
-                        app:strokeColor="@color/timer_text_dark" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn50Min"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="4dp"
-                        android:text="@string/duration_50_min"
-                        android:textColor="@color/timer_text_dark"
-                        app:strokeColor="@color/timer_text_dark" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomNavigation"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="#172633"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/btnHome"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/home"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        app:tint="@color/timer_text_dark" />
+
+    <ImageButton
+        android:id="@+id/btnSettings"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/settings"
+        android:src="@drawable/ic_settings"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        app:tint="@color/timer_text_dark" />
+
+    <ImageButton
+        android:id="@+id/btnAchievements"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/rewarded"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        app:tint="@color/timer_text_dark" />
+
+</LinearLayout>

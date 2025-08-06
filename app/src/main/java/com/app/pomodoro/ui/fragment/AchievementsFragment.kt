@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,7 +20,7 @@ import kotlinx.coroutines.launch
  * 성과 화면 Fragment
  * 뽀모도로 세션 기록과 통계를 표시
  */
-class AchievementsFragment : Fragment() {
+class AchievementsFragment : BaseFragment() {
     
     private var _binding: FragmentAchievementsBinding? = null
     private val binding get() = _binding!!
@@ -53,6 +52,10 @@ class AchievementsFragment : Fragment() {
         setupRecyclerView()
         setupClickListeners()
         loadData()
+
+        // 하단 네비게이션 설정 추가
+        setupBottomNavigation(binding.bottomNavigation.root)
+        // navigateToFragment(binding.bottomNavigation)
     }
     
     private fun setupRecyclerView() {

@@ -25,10 +25,11 @@
         android:name="com.app.pomodoro.ui.fragment.SettingsFragment"
         android:label="@string/settings_title"
         tools:layout="@layout/fragment_settings">
-        
-        <action
-            android:id="@+id/action_settings_to_home"
+
+        <action android:id="@+id/action_settings_to_home"
             app:destination="@id/homeFragment" />
+        <action android:id="@+id/action_settings_to_achievements"
+            app:destination="@id/achievementsFragment" />
     </fragment>
 
     <fragment
@@ -36,10 +37,11 @@
         android:name="com.app.pomodoro.ui.fragment.AchievementsFragment"
         android:label="@string/achievements_title"
         tools:layout="@layout/fragment_achievements">
-        
-        <action
-            android:id="@+id/action_achievements_to_home"
+
+        <action android:id="@+id/action_achievements_to_home"
             app:destination="@id/homeFragment" />
+        <action android:id="@+id/action_achievements_to_settings"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
 </navigation>

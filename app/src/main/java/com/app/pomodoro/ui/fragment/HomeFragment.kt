@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -138,19 +139,43 @@ class HomeFragment : Fragment() {
     
     private fun showResetConfirmationDialog() {
         AlertDialog.Builder(requireContext())
-            .setTitle("타이머 초기화")
-            .setMessage("현재 진행 중인 타이머를 초기화하시겠습니까?")
+            .setTitle("Reset Timer")
+            .setMessage("Do you want to reset the timer?")
             .setPositiveButton(getString(R.string.ok)) { _, _ ->
                 timerViewModel.cancelCurrentSession()
             }
             .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
-    
+
+    private fun showTimePickerDialog() {
+        val inflater = LayoutInflater.from(requireContext())
+        val dialogView = inflater.inflate(R.layout.dialog_time_picker, null)
+        val numberPicker = dialogView.findViewById<NumberPicker>(R.id.numberPicker)
+
+        numberPicker.minValue = 0
+        numberPicker.maxValue = 60
+        numberPicker.value = (timerViewModel.currentTime.value ?: 1500) / 60
+
+        // NumberPicker 스타일을 코드로 설정
+        numberPicker.wrapSelectorWheel = true
+        numberPicker.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+
+        AlertDialog.Builder(requireContext())
+            .setTitle("타이머 시간 설정")
+            .setView(dialogView)
+            .setPositiveButton("확인") { _, _ ->
+                timerViewModel.setCustomTime(numberPicker.value)
+            }
+            .setNegativeButton("취소", null)
+            .show()
+    }
+
+    /*
     private fun showTimePickerDialog() {
         val options = arrayOf("15분", "25분", "30분", "50분")
         val durations = arrayOf(15, 25, 30, 50)
-        
+
         AlertDialog.Builder(requireContext())
             .setTitle("타이머 시간 설정")
             .setItems(options) { _, which ->
@@ -158,6 +183,8 @@ class HomeFragment : Fragment() {
             }
             .show()
     }
+    */
+
     
     private fun showTimerCompletedDialog() {
         val sessionType = timerViewModel.sessionType.value ?: SessionType.WORK

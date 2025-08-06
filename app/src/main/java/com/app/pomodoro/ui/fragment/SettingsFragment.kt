@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.app.pomodoro.R
 import com.app.pomodoro.databinding.FragmentSettingsBinding
 import com.app.pomodoro.ui.viewmodel.TimerViewModel
 
@@ -15,7 +13,7 @@ import com.app.pomodoro.ui.viewmodel.TimerViewModel
  * 설정 화면 Fragment
  * Google 로그인, 타이머 설정 등을 관리
  */
-class SettingsFragment : Fragment() {
+class SettingsFragment : BaseFragment() {
     
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
@@ -33,13 +31,17 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         setupClickListeners()
         setupObservers()
+        setupTimerPicker()
         updateUI()
+
+        // 하단 네비게이션 설정
+        setupBottomNavigation(binding.bottomNavigation.root)
     }
     
     private fun setupClickListeners() {
@@ -59,7 +61,7 @@ class SettingsFragment : Fragment() {
             // TODO: 로그아웃 구현
             showLoginBefore()
         }
-        
+        /*
         // 타이머 시간 설정 버튼들
         binding.btn15Min.setOnClickListener {
             setTimerDuration(15)
@@ -75,21 +77,23 @@ class SettingsFragment : Fragment() {
         
         binding.btn50Min.setOnClickListener {
             setTimerDuration(50)
-        }
+        }*/
     }
     
     private fun setupObservers() {
         // 타이머 설정 관찰
         timerViewModel.timerSettings.observe(viewLifecycleOwner) { settings ->
             selectedDuration = settings.workDuration
-            updateTimerDurationButtons()
+            setupTimerPicker()
+            // updateTimerDurationButtons()
         }
     }
     
     private fun updateUI() {
         // 초기 상태는 로그인 전으로 설정
         showLoginBefore()
-        updateTimerDurationButtons()
+        setupTimerPicker()
+        // updateTimerDurationButtons()
     }
     
     /**
@@ -117,7 +121,8 @@ class SettingsFragment : Fragment() {
      */
     private fun setTimerDuration(minutes: Int) {
         selectedDuration = minutes
-        updateTimerDurationButtons()
+        setupTimerPicker()
+        // updateTimerDurationButtons()
         
         // ViewModel에 새로운 시간 설정 반영
         timerViewModel.setCustomTime(minutes)
@@ -126,6 +131,18 @@ class SettingsFragment : Fragment() {
     /**
      * 타이머 시간 버튼 UI 업데이트
      */
+
+    private fun setupTimerPicker() {
+        binding.numberPickerMinutes.minValue = 0
+        binding.numberPickerMinutes.maxValue = 60
+        binding.numberPickerMinutes.value = selectedDuration
+
+        binding.numberPickerMinutes.setOnValueChangedListener { _, _, newVal ->
+            setTimerDuration(newVal)
+        }
+    }
+
+    /*
     private fun updateTimerDurationButtons() {
         // 모든 버튼을 기본 스타일로 초기화
         val buttons = listOf(
@@ -147,9 +164,13 @@ class SettingsFragment : Fragment() {
             }
         }
     }
+
+     */
     
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
