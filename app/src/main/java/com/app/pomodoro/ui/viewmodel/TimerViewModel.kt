@@ -19,6 +19,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
     
     private val sessionRepository = SessionRepository(application)
     private val userRepository = UserRepository(application)
+    private val authViewModel = AuthViewModel(application)
     
     // LiveData들
     private val _timerState = MutableLiveData<TimerState>(TimerState.IDLE)
@@ -67,7 +68,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
     }
     
     /**
-     * 작업 세션 설정
+     * 집중 세션 설정
      */
     fun setWorkSession(durationInSeconds: Int = 0) {
         val duration = if (durationInSeconds > 0) {
@@ -80,7 +81,7 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
         _totalTime.value = duration
         _currentTime.value = duration
         originalDuration = duration
-        _progress.value = 0f
+        _progress.value = 1f // 설정된 시간만큼 완전히 채워진 상태
         _timerState.value = TimerState.IDLE
     }
     
@@ -94,8 +95,18 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
         _totalTime.value = duration
         _currentTime.value = duration
         originalDuration = duration
-        _progress.value = 0f
+        _progress.value = 1f // 설정된 시간만큼 완전히 채워진 상태
         _timerState.value = TimerState.IDLE
+    }
+    
+    /**
+     * 세션 타입 설정 (사용자가 직접 선택)
+     */
+    fun setSessionType(sessionType: SessionType) {
+        when (sessionType) {
+            SessionType.WORK -> setWorkSession()
+            SessionType.BREAK -> setBreakSession()
+        }
     }
     
     /**
@@ -151,18 +162,18 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
         countDownTimer?.cancel()
         _timerState.value = TimerState.COMPLETED
         _currentTime.value = 0
-        _progress.value = 1f
+        _progress.value = 0f // 타이머 완료 시 빨간색 완전히 사라짐
         
         // 세션 기록 저장
         saveSession(isCompleted = true)
         
-        // 자동 세션 전환 (작업 -> 휴식 -> 작업)
+        // 자동 세션 전환 (집중 -> 휴식 -> 집중)
         val currentSessionType = _sessionType.value ?: SessionType.WORK
         if (currentSessionType == SessionType.WORK) {
-            // 작업 완료 후 휴식으로 전환
+            // 집중 완료 후 휴식으로 전환
             setBreakSession()
         } else {
-            // 휴식 완료 후 작업으로 전환
+            // 휴식 완료 후 집중으로 전환
             setWorkSession()
         }
     }
@@ -179,9 +190,9 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
                 val secondsRemaining = (millisUntilFinished / 1000).toInt()
                 _currentTime.value = secondsRemaining
                 
-                // 진행률 계산
+                // 진행률 계산: 현재 시간이 totalTime이면 1.0, 0이면 0.0
                 val progressValue = if (totalTimeValue > 0) {
-                    1f - (secondsRemaining.toFloat() / totalTimeValue.toFloat())
+                    secondsRemaining.toFloat() / totalTimeValue.toFloat()
                 } else {
                     0f
                 }
@@ -218,9 +229,17 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
                     endTime = Date()
                 )
                 
-                sessionRepository.saveSession(session)
+                // 현재 로그인된 사용자 ID 가져오기
+                val userId = authViewModel.getCurrentUserId()
+                android.util.Log.d("TimerViewModel", "현재 사용자 ID: $userId")
+                
+                // AuthViewModel의 현재 사용자 정보도 확인
+                val currentUser = authViewModel.currentUser.value
+                android.util.Log.d("TimerViewModel", "AuthViewModel 현재 사용자: ${currentUser?.uid}")
+                
+                sessionRepository.saveSession(session, userId)
             } catch (e: Exception) {
-                // 로그 기록 또는 에러 처리
+                android.util.Log.e("TimerViewModel", "세션 저장 실패: ${e.message}", e)
             }
         }
     }
@@ -229,11 +248,14 @@ class TimerViewModel(application: Application) : AndroidViewModel(application) {
      * 커스텀 시간 설정
      */
     fun setCustomTime(minutes: Int) {
+        // 현재 실행 중인 타이머가 있으면 중지
+        countDownTimer?.cancel()
+        
         val seconds = minutes * 60
         _totalTime.value = seconds
         _currentTime.value = seconds
         originalDuration = seconds
-        _progress.value = 0f
+        _progress.value = 1f // 설정된 시간만큼 완전히 채워진 상태
         _timerState.value = TimerState.IDLE
     }
     

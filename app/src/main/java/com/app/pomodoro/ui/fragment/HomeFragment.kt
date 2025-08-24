@@ -1,5 +1,7 @@
 package com.app.pomodoro.ui.fragment
 
+import android.R.attr.backgroundTint
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +21,7 @@ import com.app.pomodoro.ui.viewmodel.TimerViewModel
  * 홈 화면 Fragment
  * 뽀모도로 타이머의 메인 기능을 담당
  */
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
     
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -40,6 +42,7 @@ class HomeFragment : Fragment() {
         
         setupObservers()
         setupClickListeners()
+        setupBottomNavigation(binding.root.findViewById(R.id.bottomNavigation))
     }
     
     private fun setupObservers() {
@@ -79,7 +82,7 @@ class HomeFragment : Fragment() {
         
         // 초기화 버튼
         binding.btnClear.setOnClickListener {
-            showResetConfirmationDialog()
+            timerViewModel.cancelCurrentSession()
         }
         
         // 디지털 타이머 클릭 - 시간 설정
@@ -95,6 +98,20 @@ class HomeFragment : Fragment() {
         // 성과 버튼
         binding.btnAchievements.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_achievements)
+        }
+        
+        // 시간 설정 버튼
+        binding.btnTimeSetting.setOnClickListener {
+            showTimePickerDialog()
+        }
+        
+        // 집중/휴식 선택 버튼
+        binding.btnWork.setOnClickListener {
+            timerViewModel.setSessionType(SessionType.WORK)
+        }
+        
+        binding.btnBreak.setOnClickListener {
+            timerViewModel.setSessionType(SessionType.BREAK)
         }
     }
     
@@ -122,55 +139,64 @@ class HomeFragment : Fragment() {
         }
     }
     
+    @SuppressLint("ResourceAsColor")
     private fun updateSessionTypeUI(sessionType: SessionType) {
         when (sessionType) {
             SessionType.WORK -> {
-                binding.tvTimerState.text = getString(R.string.work_session)
-                binding.tvTimerState.setTextColor(requireContext().getColor(R.color.work_mode))
                 binding.circularTimer.setWorkMode(true)
+                
+                // 집중 버튼 활성화, 휴식 버튼 비활성화
+                binding.btnWork.apply {
+                    setBackgroundColor(requireContext().getColor(R.color.primary_blue))
+                    setTextColor(requireContext().getColor(android.R.color.white))
+                }
+                binding.btnBreak.apply {
+                    setBackgroundColor(android.R.color.transparent)
+                    setTextColor(requireContext().getColor(R.color.break_mode))
+                    strokeColor = requireContext().getColorStateList(R.color.break_mode)
+                    setStrokeColorResource(R.color.break_mode)
+                }
             }
             SessionType.BREAK -> {
-                binding.tvTimerState.text = getString(R.string.break_session)
-                binding.tvTimerState.setTextColor(requireContext().getColor(R.color.break_mode))
                 binding.circularTimer.setWorkMode(false)
+                
+                // 휴식 버튼 활성화, 집중 버튼 비활성화
+                binding.btnBreak.apply {
+                    setBackgroundColor(requireContext().getColor(R.color.break_mode))
+                    setTextColor(requireContext().getColor(android.R.color.white))
+                }
+                binding.btnWork.apply {
+                    setBackgroundColor(android.R.color.transparent)
+                    setTextColor(requireContext().getColor(R.color.primary_blue))
+                    strokeColor = requireContext().getColorStateList(R.color.primary_blue)
+                    setStrokeColorResource(R.color.primary_blue)
+                }
             }
         }
-    }
-    
-    private fun showResetConfirmationDialog() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Reset Timer")
-            .setMessage("Do you want to reset the timer?")
-            .setPositiveButton(getString(R.string.ok)) { _, _ ->
-                timerViewModel.cancelCurrentSession()
-            }
-            .setNegativeButton(getString(R.string.cancel), null)
-            .show()
     }
 
     private fun showTimePickerDialog() {
         val inflater = LayoutInflater.from(requireContext())
         val dialogView = inflater.inflate(R.layout.dialog_time_picker, null)
-        val numberPicker = dialogView.findViewById<NumberPicker>(R.id.numberPicker)
+        val numberPicker = dialogView.findViewById<com.app.pomodoro.ui.view.HorizontalNumberPicker>(R.id.numberPicker)
 
-        numberPicker.minValue = 0
-        numberPicker.maxValue = 60
-        numberPicker.value = (timerViewModel.currentTime.value ?: 1500) / 60
+        numberPicker.setMinValue(0)
+        numberPicker.setMaxValue(60)
+        numberPicker.setValue((timerViewModel.currentTime.value ?: 1500) / 60)
 
-        // NumberPicker 스타일을 코드로 설정
-        numberPicker.wrapSelectorWheel = true
-        numberPicker.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
-
-        AlertDialog.Builder(requireContext())
+        val dialog = AlertDialog.Builder(requireContext(), R.style.DarkDialogTheme)
             .setTitle("타이머 시간 설정")
             .setView(dialogView)
             .setPositiveButton("확인") { _, _ ->
-                timerViewModel.setCustomTime(numberPicker.value)
+                timerViewModel.setCustomTime(numberPicker.getValue())
             }
             .setNegativeButton("취소", null)
-            .show()
+            .create()
+        
+        dialog.window?.setBackgroundDrawableResource(R.color.background_dark)
+        dialog.show()
     }
-
+    
     /*
     private fun showTimePickerDialog() {
         val options = arrayOf("15분", "25분", "30분", "50분")
@@ -194,11 +220,14 @@ class HomeFragment : Fragment() {
             getString(R.string.notification_break_completed)
         }
         
-        AlertDialog.Builder(requireContext())
+        val completedDialog = AlertDialog.Builder(requireContext(), R.style.DarkDialogTheme)
             .setTitle(getString(R.string.timer_completed))
             .setMessage(message)
             .setPositiveButton(getString(R.string.ok), null)
-            .show()
+            .create()
+        
+        completedDialog.window?.setBackgroundDrawableResource(R.color.background_dark)
+        completedDialog.show()
     }
     
     override fun onDestroyView() {

@@ -7,6 +7,7 @@
     <!-- Primary theme colors -->
     <color name="background_dark">#101413</color>
     <color name="primary_mint_blue">#92F4E2</color>
+    <color name="primary_blue">#007FFF</color>
     <color name="primary_pink">#FFB6C1</color>
     
     <!-- Work and break mode colors -->

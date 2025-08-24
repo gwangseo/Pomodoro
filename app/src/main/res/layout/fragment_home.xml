@@ -25,7 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/tvDigitalTimer"
         android:layout_width="wrap_content"
@@ -38,35 +37,75 @@
         android:textColor="@color/timer_text_dark"
         android:textSize="45sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/circularTimer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvTimerState"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text=""
-        android:textColor="@color/work_mode"
-        android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDigitalTimer" />
+        app:layout_constraintBottom_toTopOf="@id/btnTimeSetting" />
 
+    <!-- 시간 설정 버튼 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTimeSetting"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="시간 설정"
+        android:textSize="16sp"
+        android:textColor="@color/timer_text_dark"
+        app:strokeColor="@color/timer_text_dark"
+        app:cornerRadius="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/sessionTypeSelector" />
 
-    <!-- 원형 타이머 (중앙) -->
+    <!-- 집중/휴식 선택 버튼 -->
+    <LinearLayout
+        android:id="@+id/sessionTypeSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:background="@android:color/transparent"
+        android:padding="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnTimeSetting">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWork"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+                         android:text="집중"
+            android:textSize="16sp"
+            android:backgroundTint="@color/primary_blue"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBreak"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="휴식"
+            android:textSize="16sp"
+            android:textColor="@color/break_mode"
+            app:strokeColor="@color/break_mode"
+            app:cornerRadius="24dp" />
+
+    </LinearLayout>
+
+    <!-- 원형 타이머 (중앙 아래쪽) -->
     <com.app.pomodoro.ui.view.CircularTimerView
         android:id="@+id/circularTimer"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnClear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/sessionTypeSelector" />
 
     <!-- 초기화 버튼 -->
 
@@ -98,7 +137,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
-        android:backgroundTint="@color/button_primary"
+        android:backgroundTint="@color/primary_blue"
         android:text="@string/start_timer"
         android:textColor="@color/button_text"
         app:icon="@drawable/ic_play"
@@ -112,6 +151,7 @@
 
 
     <LinearLayout
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#172633"

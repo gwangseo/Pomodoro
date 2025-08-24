@@ -60,6 +60,16 @@ class AchievementsFragment : BaseFragment() {
     
     private fun setupRecyclerView() {
         sessionAdapter = SessionAdapter()
+        
+        // 세션 수정/삭제 콜백 설정
+        sessionAdapter.onSessionEdit = { updatedSession ->
+            updateSession(updatedSession)
+        }
+        
+        sessionAdapter.onSessionDelete = { session ->
+            deleteSession(session)
+        }
+        
         binding.rvSessions.apply {
             adapter = sessionAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -132,34 +142,43 @@ class AchievementsFragment : BaseFragment() {
     
     private fun updateFilterButtons() {
         // 모든 버튼을 기본 스타일로 초기화
-        listOf(
-            binding.btnFilterAll,
-            binding.btnFilterCompleted,
-            binding.btnFilterCancelled
-        ).forEach { button ->
-            button.setBackgroundColor(requireContext().getColor(R.color.white))
-            button.setTextColor(requireContext().getColor(R.color.timer_text_dark))
+        binding.btnFilterAll.apply {
+            setBackgroundColor(requireContext().getColor(R.color.surface_dark))
+            setTextColor(requireContext().getColor(R.color.button_text))
+            setStrokeColorResource(R.color.primary_blue)
+        }
+        
+        binding.btnFilterCompleted.apply {
+            setBackgroundColor(requireContext().getColor(R.color.surface_dark))
+            setTextColor(requireContext().getColor(R.color.button_text))
+            setStrokeColorResource(R.color.success)
+        }
+        
+        binding.btnFilterCancelled.apply {
+            setBackgroundColor(requireContext().getColor(R.color.surface_dark))
+            setTextColor(requireContext().getColor(R.color.button_text))
+            setStrokeColorResource(R.color.error)
         }
         
         // 선택된 버튼 강조
         when (currentFilter) {
             FilterType.ALL -> {
                 binding.btnFilterAll.setBackgroundColor(
-                    requireContext().getColor(R.color.primary_mint_blue)
+                    requireContext().getColor(R.color.primary_blue)
                 )
-                binding.btnFilterAll.setTextColor(requireContext().getColor(R.color.white))
+                binding.btnFilterAll.setTextColor(requireContext().getColor(R.color.button_text))
             }
             FilterType.COMPLETED -> {
                 binding.btnFilterCompleted.setBackgroundColor(
                     requireContext().getColor(R.color.success)
                 )
-                binding.btnFilterCompleted.setTextColor(requireContext().getColor(R.color.white))
+                binding.btnFilterCompleted.setTextColor(requireContext().getColor(R.color.button_text))
             }
             FilterType.CANCELLED -> {
                 binding.btnFilterCancelled.setBackgroundColor(
                     requireContext().getColor(R.color.error)
                 )
-                binding.btnFilterCancelled.setTextColor(requireContext().getColor(R.color.white))
+                binding.btnFilterCancelled.setTextColor(requireContext().getColor(R.color.button_text))
             }
         }
     }
@@ -194,6 +213,56 @@ class AchievementsFragment : BaseFragment() {
     private fun showSessionList() {
         binding.rvSessions.visibility = View.VISIBLE
         binding.layoutEmpty.visibility = View.GONE
+    }
+    
+    /**
+     * 세션 수정
+     */
+    private fun updateSession(updatedSession: TimerSession) {
+        lifecycleScope.launch {
+            try {
+                val userId = sessionRepository.getUserId()
+                val result = sessionRepository.updateSession(updatedSession, userId)
+                if (result.isSuccess) {
+                    // 데이터 다시 로드
+                    loadData()
+                } else {
+                    // 에러 처리
+                    showError("세션 수정에 실패했습니다.")
+                }
+            } catch (e: Exception) {
+                showError("세션 수정 중 오류가 발생했습니다.")
+            }
+        }
+    }
+    
+    /**
+     * 세션 삭제
+     */
+    private fun deleteSession(session: TimerSession) {
+        lifecycleScope.launch {
+            try {
+                val userId = sessionRepository.getUserId()
+                val result = sessionRepository.deleteSession(session.id, userId)
+                if (result.isSuccess) {
+                    // 데이터 다시 로드
+                    loadData()
+                } else {
+                    // 에러 처리
+                    showError("세션 삭제에 실패했습니다.")
+                }
+            } catch (e: Exception) {
+                showError("세션 삭제 중 오류가 발생했습니다.")
+            }
+        }
+    }
+    
+    /**
+     * 에러 메시지 표시
+     */
+    private fun showError(message: String) {
+        // 간단한 토스트 메시지로 표시
+        android.widget.Toast.makeText(requireContext(), message, android.widget.Toast.LENGTH_SHORT).show()
     }
     
     override fun onDestroyView() {

@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    // Firebase 설정 완료 후 활성화 예정
-    // id("com.google.gms.google-services") version "4.4.0"
+    // Firebase 설정 활성화
+    id("com.google.gms.google-services")
 }
 
 android {

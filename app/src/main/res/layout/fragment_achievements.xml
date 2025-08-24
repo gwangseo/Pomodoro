@@ -85,7 +85,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total"
+                        android:text="전체"
                         android:textColor="@color/timer_text_dark"
                         android:textSize="12sp" />
 
@@ -110,7 +110,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Success"
+                        android:text="성공"
                         android:textColor="@color/timer_text_dark"
                         android:textSize="12sp" />
 
@@ -135,7 +135,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Success Rate"
+                        android:text="성공률"
                         android:textColor="@color/timer_text_dark"
                         android:textSize="12sp" />
 
@@ -164,30 +164,35 @@
             android:layout_weight="1"
             android:layout_marginEnd="4dp"
             android:text="@string/filter_all"
+            android:textColor="@color/button_text"
             android:backgroundTint="@color/primary_mint_blue" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFilterCompleted"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.Material3.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:text="@string/filter_completed"
-            android:textColor="@color/timer_text_dark"
-            app:strokeColor="@color/success" />
+            android:textColor="@color/button_text"
+            android:backgroundTint="@color/surface_dark"
+            app:strokeColor="@color/success"
+            app:strokeWidth="1dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFilterCancelled"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.Material3.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="4dp"
             android:text="@string/filter_cancelled"
-            android:textColor="@color/timer_text_dark"
-            app:strokeColor="@color/error" />
+            android:textColor="@color/button_text"
+            android:backgroundTint="@color/surface_dark"
+            app:strokeColor="@color/error"
+            app:strokeWidth="1dp" />
 
     </LinearLayout>
 

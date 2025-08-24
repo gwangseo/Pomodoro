@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_dark">
+
+    <!-- 시간 설정 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시간 (분)"
+        android:textColor="@color/timer_text_dark"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <com.app.pomodoro.ui.view.HorizontalNumberPicker
+        android:id="@+id/numberPickerDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 세션 타입 선택 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="타입"
+        android:textColor="@color/timer_text_dark"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWorkType"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+                         android:text="집중"
+            android:textColor="@color/primary_mint_blue"
+            app:strokeColor="@color/primary_mint_blue" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBreakType"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="휴식"
+            android:textColor="@color/break_mode"
+            app:strokeColor="@color/break_mode" />
+
+    </LinearLayout>
+
+    <!-- 완료 상태 선택 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료 상태"
+        android:textColor="@color/timer_text_dark"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+                  <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+                  <com.google.android.material.button.MaterialButton
+                      android:id="@+id/btnCompleted"
+                      style="@style/Widget.Material3.Button.OutlinedButton"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:layout_marginEnd="8dp"
+                      android:text="완료"
+                      android:textColor="@color/success"
+                      app:strokeColor="@color/success" />
+
+                  <com.google.android.material.button.MaterialButton
+                      android:id="@+id/btnCancelled"
+                      style="@style/Widget.Material3.Button.OutlinedButton"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:layout_marginStart="8dp"
+                      android:text="실패"
+                      android:textColor="@color/error"
+                      app:strokeColor="@color/error" />
+
+              </LinearLayout>
+
+              <!-- 삭제 버튼을 별도 줄로 분리 -->
+              <com.google.android.material.button.MaterialButton
+                  android:id="@+id/btnDelete"
+                  style="@style/Widget.Material3.Button"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="16dp"
+                  android:text="삭제하기"
+                  android:textColor="@android:color/white"
+                  android:backgroundTint="@color/error" />
+
+          </LinearLayout>

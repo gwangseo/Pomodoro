@@ -37,7 +37,7 @@ enum class TimerState {
  * 타이머 설정 정보
  */
 data class TimerSettings(
-    val workDuration: Int = 25, // 작업 시간 (분)
+    val workDuration: Int = 25, // 집중 시간 (분)
     val breakDuration: Int = 5,  // 휴식 시간 (분)
     val enableNotifications: Boolean = true,
     val enableVibration: Boolean = true,
@@ -61,7 +61,7 @@ data class UserProfile(
 data class SessionStats(
     val totalSessions: Int = 0,
     val completedSessions: Int = 0,
-    val totalWorkTime: Int = 0, // 총 작업 시간 (분)
+    val totalWorkTime: Int = 0, // 총 집중 시간 (분)
     val averageSessionLength: Double = 0.0,
     val completionRate: Double = 0.0
 )

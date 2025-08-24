@@ -1,11 +1,46 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Pomodoro" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- 다크 모드 강제 설정 -->
+        <item name="android:forceDarkAllowed">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/background_dark</item>
+        <item name="android:navigationBarColor">@color/background_dark</item>
+        <item name="android:windowBackground">@color/background_dark</item>
     </style>
 
     <style name="Theme.Pomodoro" parent="Base.Theme.Pomodoro" />
 
+    <!-- 다크 다이얼로그 테마 -->
+    <style name="DarkDialogTheme" parent="Theme.Material3.DayNight.Dialog">
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="android:textColor">@color/timer_text_dark</item>
+        <item name="android:textColorPrimary">@color/timer_text_dark</item>
+        <item name="android:colorBackground">@color/background_dark</item>
+        <item name="colorSurface">@color/background_dark</item>
+        <item name="colorPrimary">@color/primary_mint_blue</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/primary_mint_blue</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="android:windowMinWidthMajor">85%</item>
+        <item name="android:windowMinWidthMinor">85%</item>
+        <item name="materialButtonStyle">@style/DarkDialogButtonStyle</item>
+    </style>
+
+    <!-- 다크 다이얼로그 버튼 스타일 -->
+    <style name="DarkDialogButtonStyle" parent="Widget.Material3.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">@color/primary_mint_blue</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 다크 다이얼로그 중립 버튼 스타일 (삭제 버튼용) -->
+    <style name="DarkDialogNeutralButtonStyle" parent="Widget.Material3.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">@color/error</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>

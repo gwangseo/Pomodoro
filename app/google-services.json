@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:744666566636:android:b52dd37a373aeaaf29fac9",
+        "mobilesdk_app_id": "1:744666566636:android:3db22be84d1736cc29fac9",
         "android_client_info": {
-          "package_name": "com.app.Pomodoro"
+          "package_name": "com.app.pomodoro"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "744666566636-2uc9ahisd90c7jqi8207m16ole1u8jst.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBOTQfCJL2N191TvaPQwCqUyHbfz8l2ylA"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744666566636-2uc9ahisd90c7jqi8207m16ole1u8jst.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

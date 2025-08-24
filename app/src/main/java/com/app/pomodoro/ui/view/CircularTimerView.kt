@@ -13,8 +13,7 @@ import kotlin.math.*
 
 /**
  * 뽀모도로 타이머용 원형 커스텀 뷰
- * 사용자의 요구사항에 따라 크고 굵은 원형 시계 형태로 구현
- * 분침이 돌아가는 애니메이션 포함
+ * 시계의 분침과 빨간색 채워지는 부분이 설정된 시간에 맞게 동작
  */
 class CircularTimerView @JvmOverloads constructor(
     context: Context,
@@ -32,7 +31,7 @@ class CircularTimerView @JvmOverloads constructor(
     
     // 색상
     private var backgroundColor = Color.WHITE
-    private var progressColor = Color.BLUE
+    private var progressColor = Color.RED
     private var textColor = Color.BLACK
     private var handColor = Color.RED
     
@@ -43,7 +42,7 @@ class CircularTimerView @JvmOverloads constructor(
     private var strokeWidth = 20f
     
     // 타이머 관련
-    private var totalTime = 25 * 60 // 25분을 초로 변환
+    private var totalTime = 25 * 60 // 25분을 초로 변환 (기본값)
     private var currentTime = totalTime
     private var timerState = TimerState.IDLE
     
@@ -51,8 +50,8 @@ class CircularTimerView @JvmOverloads constructor(
     private var handAnimator: ValueAnimator? = null
     private var currentHandAngle = -90f // 12시 방향부터 시작
     
-    // 진행률 (0.0 ~ 1.0)
-    private var progress = 0f
+    // 진행률 (0.0 ~ 1.0) - 현재 시간 / 총 시간
+    private var progress = 1f
         set(value) {
             field = value.coerceIn(0f, 1f)
             invalidate()
@@ -71,7 +70,7 @@ class CircularTimerView @JvmOverloads constructor(
             color = backgroundColor
         }
         
-        // 진행률 원
+        // 진행률 원 (빨간색 채워지는 부분)
         progressPaint.apply {
             style = Paint.Style.STROKE
             strokeWidth = this@CircularTimerView.strokeWidth
@@ -100,7 +99,7 @@ class CircularTimerView @JvmOverloads constructor(
             strokeWidth = 6f
         }
         
-        // 시계바늘
+        // 시계바늘 (분침)
         handPaint.apply {
             color = handColor
             strokeWidth = 8f
@@ -110,7 +109,7 @@ class CircularTimerView @JvmOverloads constructor(
     
     private fun loadColors() {
         backgroundColor = ContextCompat.getColor(context, R.color.timer_background)
-        progressColor = ContextCompat.getColor(context, R.color.timer_progress)
+        progressColor = ContextCompat.getColor(context, R.color.work_mode)
         textColor = ContextCompat.getColor(context, R.color.timer_text_dark)
         handColor = ContextCompat.getColor(context, R.color.work_mode)
         
@@ -141,7 +140,7 @@ class CircularTimerView @JvmOverloads constructor(
         drawTimeMarks(canvas)
         drawProgress(canvas)
         drawHand(canvas)
-        drawCenterText(canvas)
+        // drawCenterText(canvas) // 중앙 텍스트 제거
     }
     
     /**
@@ -175,10 +174,14 @@ class CircularTimerView @JvmOverloads constructor(
     }
     
     /**
-     * 진행률 호 그리기
+     * 진행률 호 그리기 (빨간색 채워지는 부분)
      */
     private fun drawProgress(canvas: Canvas) {
-        val sweepAngle = 360f * progress
+        // 분침과 동일하게 각도 기반으로 그리기
+        // 25분이면 150도에서 시작하여 0도까지 반시계 방향으로 줄어듦
+        val currentMinutes = currentTime / 60f
+        val sweepAngle = currentMinutes * 6f // 1분 = 6도
+        
         val rect = RectF(
             centerX - radius,
             centerY - radius,
@@ -190,7 +193,7 @@ class CircularTimerView @JvmOverloads constructor(
     }
     
     /**
-     * 시계바늘 그리기 (분침처럼 동작)
+     * 시계바늘 그리기 (분침)
      */
     private fun drawHand(canvas: Canvas) {
         val handLength = radius * 0.7f
@@ -215,6 +218,9 @@ class CircularTimerView @JvmOverloads constructor(
         val textBounds = Rect()
         textPaint.getTextBounds(timeText, 0, timeText.length, textBounds)
         val textHeight = textBounds.height()
+        
+        // 중앙에 텍스트 그리기
+        canvas.drawText(timeText, centerX, centerY + textHeight / 2f, textPaint)
     }
     
     /**
@@ -223,7 +229,7 @@ class CircularTimerView @JvmOverloads constructor(
     fun setTotalTime(timeInSeconds: Int) {
         totalTime = timeInSeconds
         currentTime = timeInSeconds
-        progress = 0f
+        // progress는 더 이상 사용하지 않음 - 각도 기반으로 직접 계산
         updateHandPosition()
         invalidate()
     }
@@ -233,11 +239,7 @@ class CircularTimerView @JvmOverloads constructor(
      */
     fun updateTime(timeInSeconds: Int) {
         currentTime = timeInSeconds
-        progress = if (totalTime > 0) {
-            1f - (currentTime.toFloat() / totalTime.toFloat())
-        } else {
-            0f
-        }
+        // progress는 더 이상 사용하지 않음 - 각도 기반으로 직접 계산
         updateHandPosition()
         invalidate()
     }
@@ -275,9 +277,15 @@ class CircularTimerView @JvmOverloads constructor(
      * 시계바늘 위치 업데이트
      */
     private fun updateHandPosition() {
-        // 시계처럼 동작: 시간이 지날수록 시계방향으로 회전
+        // 분침이 설정된 시간에 맞는 각도에 위치
+        // 25분 = 150도 (25 * 6), 5분 = 30도 (5 * 6), 40분 = 240도 (40 * 6)
         val angle = if (totalTime > 0) {
-            360f * progress - 90f // 12시 방향부터 시작
+            // 현재 시간을 분으로 변환하여 각도 계산
+            val currentMinutes = currentTime / 60f
+            
+            // 1분 = 6도 (360도 / 60분)
+            // 12시 방향(-90도)에서 시작하여 시계방향으로 회전
+            currentMinutes * 6f - 90f
         } else {
             -90f
         }
@@ -314,7 +322,7 @@ class CircularTimerView @JvmOverloads constructor(
     }
     
     /**
-     * 작업/휴식 모드에 따른 색상 변경
+     * 집중/휴식 모드에 따른 색상 변경
      */
     fun setWorkMode(isWorkMode: Boolean) {
         val newProgressColor = if (isWorkMode) {

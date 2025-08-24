@@ -27,11 +27,11 @@
     
     <!-- Achievements Screen -->
     <string name="achievements_title">Achievements</string>
-    <string name="session_completed">Success</string>
-    <string name="session_cancelled">Failed</string>
-    <string name="filter_all">Total</string>
-    <string name="filter_completed">Success</string>
-    <string name="filter_cancelled">Failed</string>
+    <string name="session_completed">성공</string>
+    <string name="session_cancelled">실패</string>
+    <string name="filter_all">전체</string>
+    <string name="filter_completed">성공</string>
+    <string name="filter_cancelled">실패</string>
     <string name="no_sessions">No records yet</string>
     
     <!-- Timer duration options -->
